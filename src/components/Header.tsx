@@ -42,9 +42,14 @@ const Header: React.FC = () => {
                             <button className={"button"}>Компания</button>
                         </Link>
                         ) : (
-                        <Link to={"/company"}>
-                        <button className={"button"}>Компания</button>
-                        </Link>
+                            <div className="nav">
+                            <Link to={"/resume"}>
+                                <button className={"button"}>Резюме</button>
+                            </Link>
+                            <Link to={"/company"}>
+                                <button className={"button"}>Компания</button>
+                            </Link>
+                            </div>
                         )}
                     <Link to={"/user/profile"}>
                         <button className={"button"}>Профиль</button>

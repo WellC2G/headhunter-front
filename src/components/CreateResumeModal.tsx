@@ -1,36 +1,32 @@
 import { atom, useAtom } from 'jotai';
 import axios from 'axios';
 import '../styles/modal.css'
-import {showModalCreateVacancyAtom} from "../atoms/atoms.tsx";
+import {showModalCreateResumeAtom} from "../atoms/atoms.tsx";
 import React from "react";
 import Tiptap from "../editor/Tiptap.tsx";
 
 
-const titleVacancyAtom = atom('');
-const salaryVacancyAtom = atom('');
-const descriptionVacancyAtom = atom('');
+const titleResumeAtom = atom('');
+const descriptionResumeAtom = atom('');
 const modalLoadingAtom = atom(false);
 const modalErrorAtom = atom<string | null>(null);
 
-const CreateVacancyModal: React.FC = () => {
-    const [showModal, setShowModal] = useAtom(showModalCreateVacancyAtom);
-    const [title, setTitle] = useAtom(titleVacancyAtom);
-    const [salary, setSalary] = useAtom(salaryVacancyAtom);
-    const [description, setDescription] = useAtom(descriptionVacancyAtom);
+const CreateResumeModal: React.FC = () => {
+    const [showModal, setShowModal] = useAtom(showModalCreateResumeAtom);
+    const [title, setTitle] = useAtom(titleResumeAtom);
+    const [description, setDescription] = useAtom(descriptionResumeAtom);
     const [loading, setLoading] = useAtom(modalLoadingAtom);
     const [error, setError] = useAtom(modalErrorAtom);
 
-    const companyId = localStorage.getItem('companyId');
-
-    const handleCreateVacancy = async (e: any) => {
+    const handleCreateResume = async (e: any) => {
         e.preventDefault();
         setError(null);
         setLoading(true);
 
         try {
-            const VacancyData = {title, salary, description};
+            const ResumeData = {title, description};
             const token = localStorage.getItem("token");
-            await axios.post(`http://localhost:3000/vacancy/create/${companyId}`, VacancyData, {
+            await axios.post(`http://localhost:3000/resume/create`, ResumeData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -38,7 +34,6 @@ const CreateVacancyModal: React.FC = () => {
             });
             setShowModal(false);
             setTitle('');
-            setSalary('');
             setDescription('');
 
             window.location.reload()
@@ -58,28 +53,17 @@ const CreateVacancyModal: React.FC = () => {
         <div className="modal">
             <div className="modal-content">
                 <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-                <h2 className={"modal-h2"}>Создать вакансию</h2>
+                <h2 className={"modal-h2"}>Создать резюме</h2>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-                <form onSubmit={handleCreateVacancy} className="modal-form">
+                <form onSubmit={handleCreateResume} className="modal-form">
                     <div>
-                        <label htmlFor="name" className={"modal-label"}>Название вакансии:</label>
+                        <label htmlFor="name" className={"modal-label"}>Название резюме:</label>
                         <input
                             className={"modal-input"}
                             type="text"
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="salary" className={"modal-label"}>Зарплата:</label>
-                        <input
-                            className={"modal-input"}
-                            type="text"
-                            id="salary"
-                            value={salary}
-                            onChange={(e) => setSalary(e.target.value)}
                             required
                         />
                     </div>
@@ -96,4 +80,4 @@ const CreateVacancyModal: React.FC = () => {
     );
 }
 
-export default CreateVacancyModal;
+export default CreateResumeModal;

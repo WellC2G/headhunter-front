@@ -1,4 +1,4 @@
-.vacancyPage {
+.resumePage {
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Выравнивание по левому краю */
@@ -10,14 +10,14 @@
 }
 
 
-.vacancyPage-label {
+.resumePage-label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
 }
 
-.vacancyPage-p{
+.resumePage-p{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -38,7 +38,7 @@
     width: 48%;
 }
 
-.vacancyPage-button, .vacancyPage-button-delete {
+.resumePage-button, .resumePage-button-delete {
     padding: 10px;
     background-color: #06AF04;
     color: white;
@@ -51,18 +51,18 @@
     margin-bottom: 10px;
 }
 
-.vacancyPage-button-delete {
+.resumePage-button-delete {
     background-color: #f44336;
     color: white;
 }
 
-.vacancyPage-button:disabled {
+.resumePage-button:disabled {
     background-color: #ccc;
     cursor: default;
 }
 
 
-.vacancyPage-vacancy-info {
+.resumePage-resume-info {
     margin-top: 40px;
     display: flex;
     align-items: center;
@@ -76,21 +76,21 @@
     flex: 1;
 }
 
-.vacancyPage-details {
+.resumePage-details {
     flex: 1;
 }
-.vacancyPage-content {
+.resumePage-content {
     display: flex;
     gap: 20px;
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
 }
-.vacancyPage-vacancies h2 {
+.resumePage-vacancies h2 {
     margin-top: 0; /* Убираем отступ сверху у заголовка */
 }
 
-.vacancy-item {
+.resume-item {
     display: flex;
     align-items: flex-start; /* Выравнивание по верхнему краю */
     position: relative; /* Для позиционирования кнопки удаления */
@@ -104,21 +104,16 @@
     height: 100px; /* Фиксированная высота */
 }
 
-.vacancy-info {
+.resume-info {
     width: calc(100% - 40px); /* Ширина блока информации с учетом кнопки */
 }
 
-.vacancy-info h3 {
-    margin: 0 0 5px 0;
+.resume-info h3 {
+    margin-top: 20px;
     font-size: 24px; /* Увеличенный размер шрифта для заголовка */
 }
 
-.vacancy-info p {
-    margin: 0;
-    font-size: 20px; /* Увеличенный размер шрифта для зарплаты */
-}
-
-.vacancy-button-delete {
+.resume-button-delete {
     position: absolute; /* Абсолютное позиционирование */
     top: 10px; /* Отступ сверху */
     right: 10px; /* Отступ справа */
@@ -131,13 +126,13 @@
     padding: 0;
 }
 
-.vacancy-button-delete:hover,
-.vacancy-button-delete:focus {
+.resume-button-delete:hover,
+.resume-button-delete:focus {
     color: black;
     text-decoration: none;
 }
 
-.vacancyPage-button {
+.resumePage-button {
     margin-top: auto; /* Кнопка "Редактировать" будет внизу */
     margin-left: auto; /* Выравнивание по правому краю */
     margin-bottom: 10px;

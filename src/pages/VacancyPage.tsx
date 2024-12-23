@@ -94,7 +94,7 @@ const VacancyPage: React.FC = () => {
                                     <button onClick={() => {setShowModalEdit(true);
                                         setSelectedVacancyId(vacancy.id);}}
                                             className={"vacancyPage-button"}>
-                                        Редактировать компанию
+                                        Редактировать вакансию
                                     </button>
                                     <span className="vacancy-button-delete"
                                           onClick={() => handleDeleteVacancy(vacancy.id)}>&times;</span>

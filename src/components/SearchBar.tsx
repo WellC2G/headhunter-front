@@ -1,15 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/SearchBar.css";
+import {atom, useAtom} from "jotai";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import {vacanciesAtom} from "../atoms/atoms.tsx";
+
+const queryAtom = atom('');
+const loadingAtom = atom(false);
+const errorAtom = atom<string | null>(null);
 
 const SearchBar: React.FC = () => {
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useAtom(queryAtom);
+    const [loading, setLoading] = useAtom(loadingAtom);
+    const [error, setError] = useAtom(errorAtom);
+    const [, setVacancies] = useAtom(vacanciesAtom);
 
-    const handleSearch = () => {
-        alert(`Searching for jobs: ${query}`);
+    const navigate = useNavigate();
+
+    const handleSearch = async (e: any) => {
+        setLoading(true);
+        setError(null);
+        e.preventDefault();
+
+        try {
+            const response = await axios.get(`http://localhost:3000/vacancy/home/search?title=${query}`, {});
+            setVacancies(response.data);
+
+            const currentURL = window.location.pathname;
+
+            if (currentURL == "/") {
+                navigate('/search');
+            }
+
+        } catch (err: any) {
+            setError(err.response?.data?.error || "An error occurred");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className={"container"}>
+            {error && <p style={{color: 'red'}}>{error}</p>}
             <input
                 type="text"
                 placeholder="Поиск вакансий"
@@ -17,8 +49,8 @@ const SearchBar: React.FC = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 className={"input"}
             />
-            <button onClick={handleSearch} className={"button"}>
-                Поиск
+            <button onClick={handleSearch} className={"button"} disabled={loading}>
+                {loading ? "Поиск..." : "Поиск"}
             </button>
         </div>
     );

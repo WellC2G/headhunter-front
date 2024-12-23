@@ -1,41 +1,38 @@
 import { atom, useAtom } from 'jotai';
 import axios from 'axios';
 import '../styles/modal.css'
-import {showModalEditVacancyAtom} from "../atoms/atoms.tsx";
+import {showModalEditResumeAtom} from "../atoms/atoms.tsx";
 import {useEffect} from "react";
 import Tiptap from "../editor/Tiptap.tsx";
 
-interface EditVacancyModalProps {
-    vacancyId: number | null;
+interface EditResumeModalProps {
+    resumeId: number | null;
 }
 
-const titleVacancyAtom = atom('');
-const salaryVacancyAtom = atom('');
-const descriptionVacancyAtom = atom<string>('');
+const titleResumeAtom = atom('');
+const descriptionResumeAtom = atom<string>('');
 const modalLoadingAtom = atom(false);
 const modalErrorAtom = atom<string | null>(null);
 
-const EditVacancyModal: React.FC<EditVacancyModalProps> = ({vacancyId}) => {
-    const [showModal, setShowModal] = useAtom(showModalEditVacancyAtom);
-    const [title, setTitle] = useAtom(titleVacancyAtom);
-    const [salary, setSalary] = useAtom(salaryVacancyAtom);
-    const [description, setDescription] = useAtom(descriptionVacancyAtom);
+const EditResumeModal: React.FC<EditResumeModalProps> = ({resumeId}) => {
+    const [showModal, setShowModal] = useAtom(showModalEditResumeAtom);
+    const [title, setTitle] = useAtom(titleResumeAtom);
+    const [description, setDescription] = useAtom(descriptionResumeAtom);
     const [loading, setLoading] = useAtom(modalLoadingAtom);
     const [error, setError] = useAtom(modalErrorAtom);
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!vacancyId) return;
+            if (!resumeId) return;
             try {
                 const token = localStorage.getItem("token");
-                const responseVacancy = await axios.get(`http://localhost:3000/vacancy/${vacancyId}`, {
+                const responseVacancy = await axios.get(`http://localhost:3000/resume/${resumeId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     }
                 });
 
                 setTitle(responseVacancy.data.title);
-                setSalary(responseVacancy.data.salary);
                 setDescription(responseVacancy.data.description);
 
             } catch (err: any) {
@@ -43,24 +40,24 @@ const EditVacancyModal: React.FC<EditVacancyModalProps> = ({vacancyId}) => {
             }
         };
         fetchData();
-    }, [vacancyId]);
+    }, [resumeId]);
 
 
-    const handleEditVacancy = async (e: any) => {
+    const handleEditResume = async (e: any) => {
         e.preventDefault();
         setError(null);
         setLoading(true);
 
-        if (!vacancyId) {
-            setError("Vacancy ID is not defined");
+        if (!resumeId) {
+            setError("Resume ID is not defined");
             setLoading(false);
             return;
         }
 
         try {
-            const VacancyData = {title, salary, description};
+            const VacancyData = {title, description};
             const token = localStorage.getItem("token");
-            await axios.put(`http://localhost:3000/vacancy/edit/${vacancyId}`, VacancyData, {
+            await axios.put(`http://localhost:3000/resume/edit/${resumeId}`, VacancyData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -89,28 +86,17 @@ const EditVacancyModal: React.FC<EditVacancyModalProps> = ({vacancyId}) => {
         <div className="modal">
             <div className="modal-content">
                 <span className="close" onClick={() => handleDisable()}>&times;</span>
-                <h2 className={"modal-h2"}>Редактировать вакансию</h2>
+                <h2 className={"modal-h2"}>Редактировать резюме</h2>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-                <form onSubmit={handleEditVacancy} className="modal-form">
+                <form onSubmit={handleEditResume} className="modal-form">
                     <div>
-                        <label htmlFor="name" className={"modal-label"}>Название вакансии:</label>
+                        <label htmlFor="name" className={"modal-label"}>Название резюме:</label>
                         <input
                             className={"modal-input"}
                             type="text"
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="salary" className={"modal-label"}>Зарплата:</label>
-                        <input
-                            className={"modal-input"}
-                            type="text"
-                            id="salary"
-                            value={salary}
-                            onChange={(e) => setSalary(e.target.value)}
                             required
                         />
                     </div>
@@ -129,4 +115,4 @@ const EditVacancyModal: React.FC<EditVacancyModalProps> = ({vacancyId}) => {
     );
 }
 
-export default EditVacancyModal;
+export default EditResumeModal;

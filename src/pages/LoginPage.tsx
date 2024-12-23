@@ -44,6 +44,7 @@ const LoginPage: React.FC = () => {
             setError(err.response?.data?.error || "An error occurred");
         } finally {
             setLoading(false);
+            window.location.reload();
         }
     };
 

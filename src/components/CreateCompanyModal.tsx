@@ -41,7 +41,7 @@ const CreateCompanyModal: React.FC = () => {
 
             navigate(`/company/${companyId}`);
         } catch (err: any) {
-            setError(err.response?.data?.error || "An error occurred");
+            setError(err.response?.data?.message || "An error occurred");
         } finally {
             setLoading(false);
         }

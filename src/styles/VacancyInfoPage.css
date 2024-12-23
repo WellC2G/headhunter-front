@@ -1,0 +1,145 @@
+.vacancyInfoPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 70vh;
+    font-family: Arial, sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.vacancyInfoPage-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.vacancyInfoPage-p {
+    width: 100%;
+    padding: 10px;
+    padding-left: 0 !important;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    word-break: break-word;
+}
+
+.vacancyInfoPage-h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.vacancyInfoPage-header{
+    margin-bottom: 0;
+}
+
+.vacancyInfoPage-title {
+    font-size: 20px; /* Увеличенный размер шрифта */
+    font-weight: bold;
+    margin-bottom: 10px; /* Немного уменьшенный отступ */
+}
+
+.vacancyInfoPage-salary-container {
+    display: flex; /* Элементы в строку */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    margin-bottom: 15px;
+}
+
+.vacancyInfoPage-salary-label {
+    margin-bottom: 0; /* Убираем отступ снизу */
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.vacancyInfoPage-salary {
+    font-size: 18px; /* Увеличенный размер шрифта */
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.vacancyInfoPage-button {
+    padding: 10px;
+    background-color: #06AF04;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    margin-top: 20px;
+}
+
+.vacancyInfoPage-button:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+.vacancyInfoPage-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 55%;
+}
+
+.vacancyInfoPage-description {
+    margin-top: 10px;
+}
+
+.vacancyInfoPage-company-info {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.vacancyInfoPage-company-title {
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.vacancyInfoPage-company-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.vacancyInfoPage-avatar {
+    margin-bottom: 0;
+}
+
+.vacancyInfoPage-company-name {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.vacancyInfoPage-company-name .vacancyInfoPage-p{
+    margin-bottom: 0;
+}
+
+.vacancyInfoPage-company-description {
+    margin-top: 10px;
+}
+
+.avatar-preview {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
