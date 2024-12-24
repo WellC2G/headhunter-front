@@ -115,8 +115,10 @@ const CompanyIdPage: React.FC = () => {
                     <button className="companyPage-button">Вакансии
                     </button>
                     </Link>
+                    <Link to={"/responses"}>
                     <button className="companyPage-button">Отклики
                     </button>
+                    </Link>
                 </div>
                 <div className="companyPage-content">
                     <div className="companyPage-company-info">

@@ -179,3 +179,23 @@
 .avatar-upload-input {
     display: none;
 }
+
+.modal-resume-item {
+    display: flex;
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    position: relative; /* Для позиционирования кнопки удаления */
+    gap: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 520px; /* Фиксированная ширина */
+    height: 60px; /* Фиксированная высота */
+}
+
+.modal-resume-list {
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+    height: 400px; /* Ограничиваем максимальную высоту списка */
+    width: 520px; /* Немного больше ширины элемента, чтобы вместить полосу прокрутки */
+}

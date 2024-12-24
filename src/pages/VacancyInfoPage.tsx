@@ -3,7 +3,8 @@ import Header from "../components/Header.tsx";
 import axios from "axios";
 import {atom, useAtom} from "jotai";
 import {useParams} from "react-router-dom";
-import '../styles/VacancyInfoPage.css'
+import '../styles/VacancyInfoPage.css';
+import ResponseButton from "../components/ResponseButton.tsx";
 
 const titleAtom = atom("");
 const descriptionAtom = atom<string>("");
@@ -67,7 +68,7 @@ const VacancyInfoPage: React.FC = () => {
                         <div className="vacancyInfoPage-description"
                                  dangerouslySetInnerHTML={{__html: description}}/>
                     </div>
-                    <button className={"vacancyInfoPage-button"}>Откликнуться</button>
+                    <ResponseButton vacancyId = {vacancyId} />
                 </div>
                 <div className="vacancyInfoPage-company-info">
                     <h3 className={"vacancyInfoPage-h3 vacancyInfoPage-company-title"}>Компания</h3>

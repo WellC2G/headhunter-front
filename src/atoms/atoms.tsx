@@ -20,5 +20,7 @@ export const showModalCreateVacancyAtom = atom(false);
 export const showModalEditVacancyAtom = atom(false);
 export const showModalCreateResumeAtom = atom(false);
 export const showModalEditResumeAtom = atom(false);
+export const showModalSubmitResumeAtom = atom(false);
 
 export const vacanciesAtom = atom<Vacancy[]>([]);
+export const vacanciesUserAtom = atom<Vacancy[]>([]);

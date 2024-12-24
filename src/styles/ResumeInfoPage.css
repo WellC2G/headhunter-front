@@ -1,0 +1,145 @@
+.resumeInfoPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 70vh;
+    font-family: Arial, sans-serif;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.resumeInfoPage-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.resumeInfoPage-p {
+    width: 100%;
+    padding: 10px;
+    padding-left: 0 !important;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    word-break: break-word;
+}
+
+.resumeInfoPage-h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.resumeInfoPage-header{
+    margin-bottom: 0;
+}
+
+.resumeInfoPage-title {
+    font-size: 20px; /* Увеличенный размер шрифта */
+    font-weight: bold;
+    margin-bottom: 10px; /* Немного уменьшенный отступ */
+}
+
+.resumeInfoPage-salary-container {
+    display: flex; /* Элементы в строку */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    margin-bottom: 15px;
+}
+
+.resumeInfoPage-salary-label {
+    margin-bottom: 0; /* Убираем отступ снизу */
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.resumeInfoPage-salary {
+    font-size: 18px; /* Увеличенный размер шрифта */
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.resumeInfoPage-button {
+    padding: 10px;
+    background-color: #06AF04;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    margin-top: 20px;
+}
+
+.resumeInfoPage-button:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+.resumeInfoPage-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 55%;
+}
+
+.resumeInfoPage-description {
+    margin-top: 10px;
+}
+
+.resumeInfoPage-user-info {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.resumeInfoPage-user-title {
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.resumeInfoPage-user-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.resumeInfoPage-avatar {
+    margin-bottom: 0;
+}
+
+.resumeInfoPage-user-name {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.resumeInfoPage-user-name .resumeInfoPage-p{
+    margin-bottom: 0;
+}
+
+.resumeInfoPage-user-description {
+    margin-top: 10px;
+}
+
+.avatar-preview {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

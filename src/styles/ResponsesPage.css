@@ -1,0 +1,169 @@
+.responsePage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Выравнивание по левому краю */
+    min-height: 70vh;
+    font-family: Arial, sans-serif;
+    width: 80%; /* Ширина блока */
+    margin: 0 auto; /* Центрирование блока по горизонтали */
+    padding: 20px; /* Отступы внутри блока */
+}
+
+
+.responsePage-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.responsePage-p{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    word-break: break-word;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+
+.button-container > div {
+    width: 48%;
+}
+
+.responsePage-button, .responsePage-button-delete {
+    padding: 10px;
+    background-color: #06AF04;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+}
+
+.responsePage-button-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.responsePage-button:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+
+.responsePage-vacancy-info {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    background-color: white; /* Белый фон */
+    padding: 20px; /* Отступы внутри блока */
+    border-radius: 10px; /* Скругленные края */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень (необязательно) */
+    max-width: 50%;
+    flex: 1;
+}
+
+.responsePage-details {
+    flex: 1;
+}
+.responsePage-content {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.responsePage-vacancies h2 {
+    margin-top: 0; /* Убираем отступ сверху у заголовка */
+}
+
+.vacancy-item {
+    display: flex;
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    position: relative; /* Для позиционирования кнопки удаления */
+    gap: 10px;
+    margin-bottom: 0px; /* Убираем отступ снизу у элемента вакансии */
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Фиксированная ширина */
+    height: auto; /* Высота подстраивается под содержимое */
+}
+.vacancy-info {
+    width: calc(100% - 40px); /* Ширина блока информации с учетом кнопки */
+}
+
+.vacancy-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 24px; /* Увеличенный размер шрифта для заголовка */
+}
+
+.vacancy-info p {
+    margin: 0;
+    font-size: 20px; /* Увеличенный размер шрифта для зарплаты */
+}
+
+.response-button-delete {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.response-button-delete:hover,
+.response-button-delete:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.resumes-block {
+    margin-left: 0px; /* Убираем отступ слева */
+    margin-bottom: 20px;
+    width: 520px; /* Добавляем ширину блока, равную ширине vacancy-item */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.response-info {
+    background-color: #DCDCDC;
+    padding: 10px;
+    margin-bottom: 0px; /* Убираем отступ снизу у элемента резюме */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd; /* Добавляем разделитель между резюме */
+}
+.response-info:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.response-info h4 {
+    margin-right: auto; /* Добавляем автоматический отступ справа от заголовка */
+}
+
+.responsePage-button { /* Добавляем отступ слева для кнопки "Чат" */
+    margin-right: 10px;
+}
+.resume-link {
+    text-decoration: none;
+    color: black;
+    margin-right: auto;
+}
+

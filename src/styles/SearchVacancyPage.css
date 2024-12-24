@@ -32,7 +32,6 @@
     margin-bottom: 10px;
 }
 
-
 .searchVacancyPage-button:disabled {
     background-color: #ccc;
     cursor: default;
