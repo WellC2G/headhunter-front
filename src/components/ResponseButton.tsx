@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import axios from "axios";
 import {atom, useAtom} from "jotai/index";
 import "../styles/ResponseButton.css"
-import {showModalSubmitResumeAtom, vacanciesUserAtom} from "../atoms/atoms.tsx";
+import {activeVacancyIdAtom, showModalSubmitResumeAtom, vacanciesUserAtom} from "../atoms/atoms.tsx";
 import SubmitResumeModal from "./SubmitResumeModal.tsx";
 
 interface ResponseButtonProps {
@@ -16,6 +16,7 @@ const ResponseButton: React.FC<ResponseButtonProps> = ({ vacancyId }) => {
     const [error, setError] = useAtom(buttonErrorAtom);
     const [userVacancies, setUserVacancies] = useAtom(vacanciesUserAtom);
     const [, setShowModal] = useAtom(showModalSubmitResumeAtom);
+    const [, setActiveVacancyId] = useAtom(activeVacancyIdAtom);
 
     const token = localStorage.getItem("token");
 
@@ -62,13 +63,18 @@ const ResponseButton: React.FC<ResponseButtonProps> = ({ vacancyId }) => {
 
     const hasResponded = userVacancies.some(uv => uv.id === vacancyId);
 
+    const handleOpenModal = () => {
+        setActiveVacancyId(vacancyId);
+        setShowModal(true);
+    };
+
     return (
         <div>
             {error && <p style={{color: 'red'}}>{error}</p>}
             {!hasResponded && (
                 <button
                     className="responseButton"
-                    onClick={() => setShowModal(true)}
+                    onClick={() => handleOpenModal()}
                 >
                     Откликнуться
                 </button>
@@ -81,7 +87,7 @@ const ResponseButton: React.FC<ResponseButtonProps> = ({ vacancyId }) => {
                     Откликнуться
                 </button>
             )}
-            <SubmitResumeModal vacancyId={vacancyId}/>
+            <SubmitResumeModal/>
         </div>
     )
 }

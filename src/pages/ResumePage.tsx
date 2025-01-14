@@ -9,6 +9,7 @@ import {
 } from "../atoms/atoms.tsx";
 import EditResumeModal from "../components/EditResumeModal.tsx";
 import CreateResumeModal from "../components/CreateResumeModal.tsx";
+import {Link} from "react-router-dom";
 
 interface Resume {
     id: number;
@@ -84,13 +85,16 @@ const ResumePage: React.FC = () => {
                             <button onClick={() => setShowModal(true)} className={"resumePage-button"}>
                                 Создать резюме
                             </button>
+                            <Link to={"/resume/list"} className={"resumePage-button-link"}>
+                                Чаты
+                            </Link>
                         </div>
                         <div>
                             <h2>Резюме</h2>
                             <div>
                             {resumes.map((resume) => (
-                                <div key={resume.id} className="resume-item">
-                                    <div className="resume-info">
+                                <div key={resume.id} className="resumePage-item">
+                                    <div className="resumePage-info">
                                         <h3>{resume.title}</h3>
                                     </div>
                                     <button onClick={() => {setShowModalEdit(true);
@@ -98,7 +102,7 @@ const ResumePage: React.FC = () => {
                                             className={"resumePage-button"}>
                                         Редактировать резюме
                                     </button>
-                                    <span className="resume-button-delete"
+                                    <span className="resumePage-button-delete"
                                           onClick={() => handleDeleteResume(resume.id)}>&times;</span>
                                 </div>
                             ))}

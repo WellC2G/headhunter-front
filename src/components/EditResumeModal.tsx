@@ -26,7 +26,7 @@ const EditResumeModal: React.FC<EditResumeModalProps> = ({resumeId}) => {
             if (!resumeId) return;
             try {
                 const token = localStorage.getItem("token");
-                const responseVacancy = await axios.get(`http://localhost:3000/resume/${resumeId}`, {
+                const responseVacancy = await axios.get(`http://localhost:3000/resume/info/${resumeId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     }

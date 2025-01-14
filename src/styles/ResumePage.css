@@ -38,7 +38,7 @@
     width: 48%;
 }
 
-.resumePage-button, .resumePage-button-delete {
+.resumePage-button, .resumePage-button-delete, .resumePage-button-link {
     padding: 10px;
     background-color: #06AF04;
     color: white;
@@ -90,7 +90,7 @@
     margin-top: 0; /* Убираем отступ сверху у заголовка */
 }
 
-.resume-item {
+.resumePage-item {
     display: flex;
     align-items: flex-start; /* Выравнивание по верхнему краю */
     position: relative; /* Для позиционирования кнопки удаления */
@@ -104,16 +104,16 @@
     height: 100px; /* Фиксированная высота */
 }
 
-.resume-info {
+.resumePage-info {
     width: calc(100% - 40px); /* Ширина блока информации с учетом кнопки */
 }
 
-.resume-info h3 {
+.resumePage-info h3 {
     margin-top: 20px;
     font-size: 24px; /* Увеличенный размер шрифта для заголовка */
 }
 
-.resume-button-delete {
+.resumePage-button-delete {
     position: absolute; /* Абсолютное позиционирование */
     top: 10px; /* Отступ сверху */
     right: 10px; /* Отступ справа */
@@ -126,8 +126,8 @@
     padding: 0;
 }
 
-.resume-button-delete:hover,
-.resume-button-delete:focus {
+.resumePage-button-delete:hover,
+.resumePage-button-delete:focus {
     color: black;
     text-decoration: none;
 }
@@ -138,3 +138,8 @@
     margin-bottom: 10px;
     display: block;
 }
+
+.resumePage-button-link {
+    text-decoration: none;
+}
+

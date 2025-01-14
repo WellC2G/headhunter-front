@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai';
 import axios from 'axios';
 import '../styles/modal.css'
-import {showModalSubmitResumeAtom} from "../atoms/atoms.tsx";
+import {activeVacancyIdAtom, showModalSubmitResumeAtom} from "../atoms/atoms.tsx";
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -10,17 +10,13 @@ interface Resume {
     title: string;
 }
 
-interface SubmitResumeModalProps {
-    vacancyId: number | undefined | string;
-}
-
 const selectedResumeIdAtom = atom<number | null>(null);
 
 const modalLoadingAtom = atom(false);
 const modalErrorAtom = atom<string | null>(null);
 const resumesAtom = atom<Resume[]>([]);
 
-const SubmitResumeModal: React.FC<SubmitResumeModalProps> = ({vacancyId}) => {
+const SubmitResumeModal: React.FC = () => {
     const [showModal, setShowModal] = useAtom(showModalSubmitResumeAtom);
     const [resumes, setResumes] = useAtom(resumesAtom);
     const [loading, setLoading] = useAtom(modalLoadingAtom);
@@ -30,13 +26,13 @@ const SubmitResumeModal: React.FC<SubmitResumeModalProps> = ({vacancyId}) => {
 
     const navigate = useNavigate();
 
-    if(typeof vacancyId === "string") {
-        parseInt(vacancyId)
-    }
+    const [vacancyId] = useAtom(activeVacancyIdAtom);
 
     if(typeof vacancyId === undefined) {
         return null;
     }
+
+    console.log(vacancyId)
 
     useEffect(() => {
         const fethData = async () => {

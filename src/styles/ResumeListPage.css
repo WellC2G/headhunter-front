@@ -1,4 +1,4 @@
-.vacancyPage {
+.resumeListPage {
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Выравнивание по левому краю */
@@ -10,14 +10,14 @@
 }
 
 
-.vacancyPage-label {
+.resumeListPage-label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
 }
 
-.vacancyPage-p{
+.resumeListPage-p{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -38,7 +38,7 @@
     width: 48%;
 }
 
-.vacancyPage-button, .vacancyPage-button-delete {
+.resumeListPage-button, .resumeListPage-button-delete {
     padding: 10px;
     background-color: #06AF04;
     color: white;
@@ -48,21 +48,21 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: auto;
-    margin-bottom: 10px;
+    text-decoration: none;
 }
 
-.vacancyPage-button-delete {
+.resumeListPage-button-delete {
     background-color: #f44336;
     color: white;
 }
 
-.vacancyPage-button:disabled {
+.resumeListPage-button:disabled {
     background-color: #ccc;
     cursor: default;
 }
 
 
-.vacancyPage-vacancy-info {
+.resumeListPage-resume-info {
     margin-top: 40px;
     display: flex;
     align-items: center;
@@ -76,49 +76,48 @@
     flex: 1;
 }
 
-.vacancyPage-details {
+.resumeListPage-details {
     flex: 1;
 }
-.vacancyPage-content {
+.resumeListPage-content {
     display: flex;
     gap: 20px;
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
 }
-.vacancyPage-vacancies h2 {
+.resumeListPage-vacancies h2 {
     margin-top: 0; /* Убираем отступ сверху у заголовка */
 }
 
-.vacancy-item {
+.resume-item {
     display: flex;
     align-items: flex-start; /* Выравнивание по верхнему краю */
     position: relative; /* Для позиционирования кнопки удаления */
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0px; /* Убираем отступ снизу у элемента вакансии */
     background-color: white;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 500px; /* Фиксированная ширина */
-    height: 100px; /* Фиксированная высота */
+    height: auto; /* Высота подстраивается под содержимое */
 }
-
-.vacancy-info {
+.resume-info {
     width: calc(100% - 40px); /* Ширина блока информации с учетом кнопки */
 }
 
-.vacancy-info h3 {
+.resume-info h3 {
     margin: 0 0 5px 0;
     font-size: 24px; /* Увеличенный размер шрифта для заголовка */
 }
 
-.vacancy-info p {
+.resume-info p {
     margin: 0;
     font-size: 20px; /* Увеличенный размер шрифта для зарплаты */
 }
 
-.vacancy-button-delete {
+.response-button-delete {
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
@@ -128,15 +127,44 @@
     padding: 0;
 }
 
-.vacancy-button-delete:hover,
-.vacancy-button-delete:focus {
+.response-button-delete:hover,
+.response-button-delete:focus {
     color: black;
     text-decoration: none;
 }
 
-.vacancyPage-button {
-    margin-top: auto; /* Кнопка "Редактировать" будет внизу */
-    margin-left: auto; /* Выравнивание по правому краю */
-    margin-bottom: 10px;
-    display: block;
+.vacancies-block {
+    margin-left: 0px; /* Убираем отступ слева */
+    margin-bottom: 20px;
+    width: 520px; /* Добавляем ширину блока, равную ширине resume-item */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
+
+.response-info {
+    background-color: #DCDCDC;
+    padding: 10px;
+    margin-bottom: 0px; /* Убираем отступ снизу у элемента резюме */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd; /* Добавляем разделитель между резюме */
+}
+.response-info:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.response-info h4 {
+    margin-right: auto; /* Добавляем автоматический отступ справа от заголовка */
+}
+
+.resumeListPage-button { /* Добавляем отступ слева для кнопки "Чат" */
+    margin-right: 10px;
+}
+.resume-link {
+    text-decoration: none;
+    color: black;
+    margin-right: auto;
+}
+

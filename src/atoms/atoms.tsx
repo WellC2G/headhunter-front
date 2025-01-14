@@ -24,3 +24,5 @@ export const showModalSubmitResumeAtom = atom(false);
 
 export const vacanciesAtom = atom<Vacancy[]>([]);
 export const vacanciesUserAtom = atom<Vacancy[]>([]);
+
+export const activeVacancyIdAtom = atom<number | null | undefined>(null);

@@ -13,6 +13,8 @@ import VacancyInfoPage from "./pages/VacancyInfoPage.tsx";
 import ResumePage from "./pages/ResumePage.tsx";
 import ResponsesPage from "./pages/ResponsesPage.tsx";
 import ResumeInfoPage from "./pages/ResumeInfoPage.tsx";
+import ResumeListPage from "./pages/ResumeListPage.tsx";
+import Chat from "./pages/Chat.tsx";
 
 
 const App: React.FC = () => {
@@ -32,6 +34,8 @@ const App: React.FC = () => {
                 <Route path="/vacancy/:vacancyId" element={<VacancyInfoPage />} />
                 <Route path="/responses" element={<ResponsesPage />} />
                 <Route path="/resume/:resumeId" element={<ResumeInfoPage />} />
+                <Route path="/resume/list" element={<ResumeListPage />} />
+                <Route path="/chat/:id" element={<Chat />} />
             </Routes>
         </Router>
     );

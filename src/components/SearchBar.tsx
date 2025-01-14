@@ -22,8 +22,14 @@ const SearchBar: React.FC = () => {
         setError(null);
         e.preventDefault();
 
+        const trimmedQuery = query.trim();
         try {
-            const response = await axios.get(`http://localhost:3000/vacancy/home/search?title=${query}`, {});
+
+            if(trimmedQuery == '') {
+                return;
+            }
+
+            const response = await axios.get(`http://localhost:3000/vacancy/home/search?title=${trimmedQuery}`, {});
             setVacancies(response.data);
 
             const currentURL = window.location.pathname;
@@ -39,6 +45,13 @@ const SearchBar: React.FC = () => {
         }
     };
 
+    const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            handleSearch(e);
+        }
+    };
+
     return (
         <div className={"container"}>
             {error && <p style={{color: 'red'}}>{error}</p>}
@@ -47,6 +60,7 @@ const SearchBar: React.FC = () => {
                 placeholder="Поиск вакансий"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={"input"}
             />
             <button onClick={handleSearch} className={"button"} disabled={loading}>
