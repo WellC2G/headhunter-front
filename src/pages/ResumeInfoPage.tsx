@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Header from "../components/Header.tsx";
 import axios from "axios";
 import {atom, useAtom} from "jotai";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import '../styles/ResumeInfoPage.css';
 
 const titleAtom = atom("");
@@ -13,6 +13,7 @@ const nameUserAtom = atom<string>("");
 const lastNameUserAtom = atom<string>("");
 const descriptionUserAtom = atom<string>("");
 const avatarAtom = atom<string>("");
+const userIdAtom = atom<number | null>(null);
 
 const ResumeInfoPage: React.FC = () => {
 
@@ -23,6 +24,8 @@ const ResumeInfoPage: React.FC = () => {
     const [descriptionUser, setDescriptionUser] = useAtom(descriptionUserAtom);
     const [avatarUrl, setAvatarUrl] = useAtom(avatarAtom);
     const [error, setError] = useAtom(errorAtom);
+
+    const [userId, setUserId] = useAtom(userIdAtom);
 
     const {resumeId} = useParams();
 
@@ -42,6 +45,8 @@ const ResumeInfoPage: React.FC = () => {
                 setDescriptionUser(response.data.user.description);
                 setAvatarUrl("http://localhost:3000/" + response.data.user.avatar);
                 setDescription(response.data.description);
+
+                setUserId(response.data.user.id);
 
             } catch (err: any) {
                 setError(err.response?.data?.message || "An error occurred");
@@ -65,7 +70,7 @@ const ResumeInfoPage: React.FC = () => {
                         <div className="resumeInfoPage-description"
                              dangerouslySetInnerHTML={{__html: description}}/>
                     </div>
-                    <button className={"resumeInfoPage-button"}>Чат</button>
+                    <Link to={`/chat-to-user/${userId}`} className={"resumeInfoPage-button"}>Чат</Link>
                 </div>
                 <div className="resumeInfoPage-user-info">
                     <h3 className={"resumeInfoPage-h3 resumeInfoPage-user-title"}>Пользователь</h3>

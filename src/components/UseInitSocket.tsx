@@ -4,6 +4,7 @@ import {io, Socket} from "socket.io-client";
 export const Config = {
     base_url: "http://localhost:3000",
     token_key: "token",
+    companyId_key: "companyId",
 };
 
 const SocketContext = createContext<Socket | null>(null);
@@ -15,9 +16,9 @@ export const SocketProvider = ({ children }: { children?: ReactNode }) => {
 
     useEffect(() => {
         const socket = io(Config.base_url, {
-            extraHeaders: { Authorization: `Bearer ${localStorage.getItem(Config.token_key)!}`},
+            query: { companyId: localStorage.getItem(Config.companyId_key)},
             auth: {
-                Authorization: `Bearer ${localStorage.getItem(Config.token_key)!}`,
+                Authorization: `Bearer ${localStorage.getItem(Config.token_key)!}`
             },
             transports: ["websocket"],
         });

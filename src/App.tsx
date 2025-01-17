@@ -14,7 +14,8 @@ import ResumePage from "./pages/ResumePage.tsx";
 import ResponsesPage from "./pages/ResponsesPage.tsx";
 import ResumeInfoPage from "./pages/ResumeInfoPage.tsx";
 import ResumeListPage from "./pages/ResumeListPage.tsx";
-import Chat from "./pages/Chat.tsx";
+import Chat from "./pages/ChatToCompany.tsx";
+import ChatToUser from "./pages/ChatToUser.tsx";
 
 
 const App: React.FC = () => {
@@ -35,7 +36,8 @@ const App: React.FC = () => {
                 <Route path="/responses" element={<ResponsesPage />} />
                 <Route path="/resume/:resumeId" element={<ResumeInfoPage />} />
                 <Route path="/resume/list" element={<ResumeListPage />} />
-                <Route path="/chat/:id" element={<Chat />} />
+                <Route path="/chat-to-company/:id" element={<Chat />} />
+                <Route path="/chat-to-user/:id" element={<ChatToUser />} />
             </Routes>
         </Router>
     );

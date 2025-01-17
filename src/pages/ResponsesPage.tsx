@@ -16,6 +16,11 @@ interface Vacancy {
 interface Resume {
     id: number;
     title: string;
+    user: User;
+}
+
+interface User {
+    id: number;
 }
 
 
@@ -82,6 +87,8 @@ const ResponsePage: React.FC = () => {
         }
     };
 
+    console.log(vacancies)
+
     return (
         <><Header />
             <div className="responsePage">
@@ -105,7 +112,7 @@ const ResponsePage: React.FC = () => {
                                                     <Link to={`/resume/${resume.id}`} className={"resume-link"}>
                                                         <h4>{resume.title}</h4>
                                                     </Link>
-                                                    <button className={"responsePage-button"}>Чат</button>
+                                                    <Link to={`/chat-to-user/${resume.user.id}`} className={"resumeInfoPage-button"}>Чат</Link>
                                                     <span className="response-button-delete"
                                                           onClick={() => handleDeleteResponses(vacancy.id, resume.id)}>&times;</span>
                                                 </div>

@@ -1,11 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import Header from "../components/Header.tsx";
 import "../styles/Chat.css"
 import {atom, useAtom} from "jotai";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import {useSocket} from "../components/UseInitSocket.tsx";
 
-interface Chat {
+interface ChatToCompany {
     id: number;
     members: Members[];
 }
@@ -27,29 +28,44 @@ export interface Message {
 
 const errorAtom = atom<string | null>(null);
 const loadingAtom = atom<boolean>(false);
-const chatAtom = atom<Chat | null>(null);
+const chatAtom = atom<ChatToCompany | null>(null);
 const messagesAtom = atom<Message[]>([]);
 const newMessageAtom = atom<string>('');
+const userIdAtom = atom<number | null>(null);
 
 const Chat: React.FC = () => {
 
     const [error, setError] = useAtom(errorAtom);
     const [loading, setLoading] = useAtom(loadingAtom);
-    const [, setChat] = useAtom(chatAtom);
+    const [chat, setChat] = useAtom(chatAtom);
+    const [userId, setUserId] = useAtom(userIdAtom);
     const [messages, setMessages] = useAtom(messagesAtom);
     const [newMessage, setNewMessage] = useAtom(newMessageAtom);
+    const socket = useSocket();
+    const [socketMsgs, setSocketMsgs] = useState<Message[]>([]);
 
     const companyId = useParams().id;
+
+    const messagesData = useMemo(() => {
+
+        const sortMsgs = [...socketMsgs].sort((a, b) =>  - new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+
+        if (!messages) return [...sortMsgs];
+
+        return [...sortMsgs, ...messages]
+    }, [messages, socketMsgs]);
 
     useEffect(() => {
         const fethData = async () => {
             try {
                 const token = localStorage.getItem("token");
-                await axios.get("http://localhost:3000/user/check-auth", {
+                const auth = await axios.get("http://localhost:3000/user/check-auth", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     }
                 });
+
+                setUserId(auth.data.id);
 
                 const response = await axios.get(`http://localhost:3000/chat/companyId/${companyId}`, {
                     headers: {
@@ -74,6 +90,32 @@ const Chat: React.FC = () => {
         fethData();
     }, []);
 
+    const isMyMessage = (message: Message): boolean => {
+        if (!chat) return false;
+
+        const member = chat.members.find(
+            (member) => member.id.toString() === message.chatMemberId.toString(),
+        );
+
+        return member?.userId === userId;
+    };
+
+   useEffect(() => {
+        if (socket) {
+            socket.on('newMessage', (dto: {chat: ChatToCompany, message: Message}) => {
+                if (dto.chat.id !== chat?.id) return;
+
+                setSocketMsgs((prevMessages) => [...prevMessages, dto.message]);
+            });
+        }
+
+        return () => {
+            if (socket) {
+                socket.off('newMessage');
+            }
+        };
+    }, [socket, setSocketMsgs, chat]);
+
     const handleSendMessage = async (e: any) => {
         e.preventDefault();
         setError(null);
@@ -88,11 +130,10 @@ const Chat: React.FC = () => {
                 },
             });
             setNewMessage('');
+            setLoading(false);
 
         } catch (err: any) {
             setError(err.response?.data?.error || "An error occurred");
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -104,8 +145,9 @@ const Chat: React.FC = () => {
 
             <div className="chat-container">
                 <div className="messages-list">
-                    {messages.map((message) => (
-                        <div key={message.id} className="message">
+                    {messagesData.map((message) => (
+                        <div key={message.id}
+                             className={`message ${isMyMessage(message) ? 'my-message' : 'other-message'}`}>
                             <p>{message.content}</p>
                             <small>{new Date(message.createdAt).toLocaleString()}</small>
                         </div>

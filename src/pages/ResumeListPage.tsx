@@ -73,7 +73,7 @@ const ResumeListPage: React.FC = () => {
                                             {resume.submittedResumes.map((vacancy) => (
                                                 <div key={vacancy.id} className="response-info">
                                                     <h4>{vacancy.title}</h4>
-                                                    <Link to={`/chat/${vacancy.company.id}`} className={"resumeListPage-button"}> Чат
+                                                    <Link to={`/chat-to-company/${vacancy.company.id}`} className={"resumeListPage-button"}> Чат
                                                     </Link>
                                                 </div>
                                             ))}
